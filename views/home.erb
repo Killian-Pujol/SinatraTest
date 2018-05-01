@@ -1,0 +1,68 @@
+<!--
+  User: Killian Pujol
+  Date: 17/04/2018
+-->
+
+<h1>Bienvenue sur Post App !!</h1>
+
+<ul class="articles-container wrap">
+	<!--Parcours les differents articles-->
+    <% @database.each_with_index do |article,index| %>
+        <li class="article-container">
+            <a href="/<%= index %>" id="<%= index %>">
+            	<!-- Attention la class à le meme nom que la balise (nom de la class a revoir)-->
+	            <article class="article">
+	            	<!-- Photo de l article -->
+	                <div class="image-container">
+	                    <% if article[:photo] != nil %> 
+	                    <!-- Affichage de la photo-->
+				    		<img src="<%= article[:photo] %>" alt="article_Photo" height="42" width="42">
+				    	<%end%>
+	                </div>
+
+	                <!-- Information de l article -->
+	                <div class="texte-container">
+	                	<!-- Affichage du tittre et de la note-->
+	                    <header>
+	                    	<br>
+	                        <p><%= article[:title] %></p>
+	                       
+	                        <!-- Je ne sais pas jusqu'a quelle precision vont les notes et si elles sont trop précise,
+								cette 1ere méthode sera non viable il faudra utiliser la 2eme methode-->
+
+							<!-- 1ere Methode affichage note -->
+							<% #if article[:rating] != nil %>
+		                        <% #if File.exist?('public/star.jpg') %>
+		                        	<!--<img src='/public/star.jpg' alt="star" height="10" width="10">-->
+		                        <% #else %>
+		                        	<!--<p><%= '#' * (article[:rating].to_i || 0) %></p>-->
+		                        <% #end %>
+								<% #else %>
+									<!--<p> pas de note </p>-->
+							<% #end %>
+
+	                        <!-- 2eme Methode affichage note -->
+	                        <% if article[:rating] != nil %>
+		                        <% if File.exist?('public/star.png') %>
+									<p class='note'><%= article[:rating] %> <img class='etoile' src="../star.png" alt="star"></p>
+								<% else %>
+									<p><%= article[:rating] %> étoile(s)</p>
+								<% end %>
+							<% else %>
+								<p> pas de note </p>
+							<% end %>
+	                    </header>
+
+	                    <!-- Affichage du contenu 
+	                    	Revoir le découpage du resume dans la page d'accueil-->  
+	                    <section>
+	                        <!--<p><%= article[:content] %></p>-->
+	                        <% texte = article[:content].gsub(/<[^>]*>/, "")[0..100] %>
+	                        <p><%= texte + "..." %></p>
+	                    </section>
+	                </div>
+	            </article>
+        	</a>
+        </li>
+	<% end %>
+</ul>

@@ -1,0 +1,137 @@
+/*
+  User: Killian Pujol
+  Date: 17/04/2018
+*/
+
+/* 'General' */
+h1,h5 {
+	text-align: center;
+	margin-top: 50px
+}
+h2 {
+	text-align: center;
+	margin-top: 50px
+}
+
+p {
+	color: white
+}
+p.note {
+	display: inline;
+}
+
+img.detail {
+	display: block;
+	border-radius: 25px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: auto;
+    margin-right: auto
+}
+
+img.etoileDetail {
+	height: 30px;
+	width: 30px
+}
+
+img.etoile {
+	height: 20px;
+	width: 20px
+}
+
+body,html{
+	background-color: #FFE4C4;
+	margin:0;
+	padding:0
+}
+
+a {
+	text-decoration:none
+}
+
+/* Mise en forme des articles */
+
+.wrap {
+	margin-left:250px;
+	margin-right:250px
+}
+
+
+ul.articles-container {
+	margin-top: 50px;
+	background-color:#FFE4C4;
+	list-style-type:none;
+	padding:0;
+	display:flex;
+
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+
+ul.articles-container .article-container{
+	min-width:333.5px;
+	padding:.5rem;
+	width:100%;
+}
+
+ul.articles-container .article-container:hover .texte-container {
+	top:200px!important
+}
+ul.articles-container .article-container .article {
+	width:100%;
+	overflow:hidden;
+	height:400px;
+	position:relative;
+	background:#fff
+}
+ul.articles-container .article-container .article .image-container img {
+	width:100%;
+	height:300px
+}
+ul.articles-container .article-container .article .texte-container {
+	width:100%;
+	position:absolute;
+	top:300px;
+	height:350px;
+	background:rgb(100,100,255);
+	transition:.5s;
+	text-align:center
+}
+ul.articles-container .article-container .article .texte-container header {
+	height:100px
+}
+ul.articles-container .article-container .article .texte-container section {
+	margin:1rem
+}
+
+/* Mise en forme des commentaire */
+table {
+	width: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: auto;
+	margin-right: auto;
+    border: 1px solid black
+}
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #e2e2e2
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Gerer differents formats d ecran */
+@media (min-width:733px){ul.articles-container .article-container{width:50%}}
+@media (min-width:1000px){ul.articles-container .article-container{width:33.33%}}
+@media (min-width:1400px){ul.articles-container .article-container{width:25%}}

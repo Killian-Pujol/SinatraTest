@@ -1,0 +1,52 @@
+<!--
+  User: Killian Pujol
+  Date: 17/04/2018
+-->
+
+<!-- Affichage du titre de l'article--> 
+<h1><%= @database[@id][:title] %></h1>
+
+<!-- Affichage de la photo si existante--> 
+<% if @database[@id][:photo] != nil %> 
+	<img src="<%= @database[@id][:photo] %>" alt="article_Photo" height="200" width="200" class="detail" >
+<%end%>
+
+<!-- Je ne sais pas jusqu'a quelle precision vont les notes et si elles sont trop précise,
+	cette 1ere méthode sera non viable il faudra utiliser la 2eme methode-->
+
+<!-- 1ere Methode affichage note -->
+<% #if article[:rating] != nil %>
+	<% #if File.exist?('public/star.jpg') %>
+		<!--<img src='/public/star.jpg' alt="star" height="10" width="10">-->
+	<% #else %>
+		<!--<p><%= '#' * (@database[@id][:rating].to_i || 0) %></p>-->
+	<% #end %>
+<% #else %>
+	<!--<p> pas de note </p>-->
+<% #end %>
+
+<!-- 2eme Methode affichage note -->
+<% if @database[@id][:rating] != nil %>
+	<% if File.exist?('public/star.png') %>
+		<h2><%= @database[@id][:rating] %> <img class='etoileDetail' src='../star.png' alt="star"></h2>
+	<% else %>
+		<h2><%= @database[@id][:rating] %> étoile(s)</h2>
+	<% end %>
+<% else %>
+	<h2> pas de note </h2>
+<% end %>
+
+<!-- Affichage du contenu--> 
+<h5><%= @database[@id][:content] %></h5>
+
+<!-- Affichage des commentaire dans un tableau-->
+<table class="comments-container">
+	<tr>
+		<th>Commentaire</th>
+	</tr>
+	<% @comments[@id].each do |comment| %>
+		<tr>
+		    <td><%= comment %></td>
+		</tr>
+	<% end %>
+</table>
